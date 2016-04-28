@@ -1,28 +1,31 @@
-[filter "media"]
-  required = true
-  clean = git media clean %f
-  smudge = git media smudge %f
 [user]
-  name = Spencer Dixon
-  email = spencercdixon@gmail.com
+  name = Joel Sutherland
+  email = jdsutherland3@gmail.com
+[core]
+  pager = less -R
+  editor = /usr/local/bin/vim -f
+  autocrlf = input
+  excludesfile = /Users/joel/.gitignore
+[color]
+  ui = true
 [push]
   default = simple
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
+[diff]
+  tool = vimdiff
+[merge]
+  tool = vimdiff
 [alias]
-  co = checkout
-  cob = checkout -b
-  ci = commit
-  st = status
-  br = branch
-  p = push
-  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-  type = cat-file -t
-  dump = cat-file -p
-  ctags = !.git/hooks/ctags
-  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  mm = merge --no-ff
   save = !git add -A && git commit -m 'SAVEPOINT'
   undo = reset HEAD~1 --mixed
-[github]
-  user = spencercdixon
-  api-token = 0d16dd5e6ba82c5d70af3bd8912acc835fe701ea
-[core]
-  editor = vim
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  bd = branch -d
+  bm = branch --merged
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
